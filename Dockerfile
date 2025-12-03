@@ -1,7 +1,2 @@
-# Simple Docker image
-FROM ubuntu:latest
-
-RUN apt-get update && apt-get install -y curl
-
-CMD ["echo", "Hello from Docker v2!"]
-
+FROM nginx:latest
+RUN echo "Hello from Kubernetes Rolling Update v2!" > /usr/share/nginx/html/index.html

@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: hello
-        image: nginx:latest
+        image: abrar98/devops-sample-app:v2
         ports:
         - containerPort: 80
