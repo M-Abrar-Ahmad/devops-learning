@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: hello
-        image: abrar98/devops-sample-app:v2
+        image: abrar98/devops-sample-app:latest
         ports:
         - containerPort: 80
         readinessProbe:
