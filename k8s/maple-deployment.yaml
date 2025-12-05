@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maple-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: maple
+  template:
+    metadata:
+      labels:
+        app: maple
+    spec:
+      containers:
+      - name: maple
+        image: abrar98/maple:v2
+        ports:
+        - containerPort: 80
+        
+        # 🟢 Liveness Probe
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+
+        # 🟡 Readiness Probe
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 5
