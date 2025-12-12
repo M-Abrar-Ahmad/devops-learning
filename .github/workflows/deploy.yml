@@ -32,18 +32,17 @@ jobs:
         sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq
         sudo chmod +x /usr/bin/yq
 
-    - name: Update image in k8s manifest
+    - name: Update manifest image
       run: |
-        yq -i '.spec.template.spec.containers[0].image = "abrar98/devops-sample-app:${{ github.sha }}"' k8s/deployment.yaml
+        yq -i '.spec.template.spec.containers[0].image = "${{ secrets.DOCKER_USERNAME }}/devops-sample-app:${{ github.sha }}"' k8s/deployment.yaml
 
     - name: Setup kubeconfig
       run: |
         echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > kubeconfig
-      env:
-        KUBECONFIG: kubeconfig
 
     - name: Deploy to Kubernetes
-      run: |
-        kubectl apply -f k8s/
       env:
         KUBECONFIG: kubeconfig
+      run: |
+        kubectl apply -f k8s/
+        kubectl rollout status deployment/hello-deployment
