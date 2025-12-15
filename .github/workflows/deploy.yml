@@ -35,14 +35,3 @@ jobs:
     - name: Update manifest image
       run: |
         yq -i '.spec.template.spec.containers[0].image = "${{ secrets.DOCKER_USERNAME }}/devops-sample-app:${{ github.sha }}"' k8s/deployment.yaml
-
-    - name: Setup kubeconfig
-      run: |
-        echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > kubeconfig
-
-    - name: Deploy to Kubernetes
-      env:
-        KUBECONFIG: kubeconfig
-      run: |
-        kubectl apply -f k8s/
-        kubectl rollout status deployment/hello-deployment
