@@ -13,12 +13,12 @@ spec:
         app: hello
     spec:
       containers:
-      - name: hello
-        image: abrar98/devops-sample-app:v2
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            cpu: 100m
-          limits:
-            cpu: 200m
+        - name: hello
+          image: abrar98/devops-sample-app:b2909741659f4cef89b06589dcb44902bc35195e
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 200m
