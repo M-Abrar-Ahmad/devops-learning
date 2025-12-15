@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hello
-          image: abrar98/devops-sample-app:b2909741659f4cef89b06589dcb44902bc35195e
+          image: abrar98/devops-sample-app:efba7c9c92d8f1eab71708d2a4e56a7f322d761d
           ports:
             - containerPort: 80
           resources:
